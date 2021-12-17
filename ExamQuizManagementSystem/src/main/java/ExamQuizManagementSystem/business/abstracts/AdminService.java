@@ -14,4 +14,6 @@ public interface AdminService {
 	List<Admin> getAll();
 
 	Admin getByAdminId(int adminId);
+	
+	Admin getByUserId(int userId);
 }
