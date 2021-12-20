@@ -14,4 +14,6 @@ public interface TeacherService {
 	List<Teacher> getAll();
 
 	Teacher getByTeacherId(int teacherId);
+	
+	Teacher getByUserId(int userId);
 }

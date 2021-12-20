@@ -21,38 +21,42 @@ public class UserRoleManager implements UserRoleService {
 
 	@Override
 	public void add(UserRole userRole) {
-		if (userRoleDao.getByRoleId(userRole.roleId) == null) {
+		if (userRoleDao.getByRoleId(userRole.getRoleId()) == null) {
 			this.userRoleDao.save(userRole);
 			System.out.println("Ekleme işlemi yapıldı.");
-		} else {
-			System.out.println("Bu id ile zaten kayıt var. Ekleme yapılmadı.");
+			return;
 		}
+		System.out.println("Bu id ile zaten kayıt var. Ekleme yapılmadı.");
+
 	}
 
 	@Override
 	public void delete(UserRole userRole) {
-		if (userRoleDao.getByRoleId(userRole.roleId) != null) {
+		if (userRoleDao.getByRoleId(userRole.getRoleId()) != null) {
 			this.userRoleDao.delete(userRole);
 			System.out.println("Silme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
+			return;
 		}
+		System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
+
 	}
 
 	@Override
 	public void update(UserRole userRole) {
-		if (userRoleDao.getByRoleId(userRole.roleId) != null) {
+		if (userRoleDao.getByRoleId(userRole.getRoleId()) != null) {
 			this.userRoleDao.save(userRole);
 			System.out.println("Güncelleme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı. Güncelleme yapılmadı.");
+			return;
 		}
+		System.out.println("Böyle bir kayıt bulunamadı. Güncelleme yapılmadı.");
+
 	}
 
 	@Override
 	public List<UserRole> getAll() {
 		if (this.userRoleDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
+			return null;
 		}
 		return this.userRoleDao.findAll();
 	}
@@ -61,6 +65,7 @@ public class UserRoleManager implements UserRoleService {
 	public UserRole getByRoleId(int roleId) {
 		if (this.userRoleDao.getByRoleId(roleId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
+			return null;
 		}
 		return this.userRoleDao.getByRoleId(roleId);
 	}

@@ -3,6 +3,7 @@ package ExamQuizManagementSystem.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import ExamQuizManagementSystem.entities.concretes.Exam;
 
 @RestController
 @RequestMapping("/exam/")
+@CrossOrigin
 public class ExamController {
 	private ExamService examService;
 
@@ -45,5 +47,25 @@ public class ExamController {
 	@GetMapping("getByExamId")
 	public Exam getByExamId(int examId) {
 		return this.examService.getByExamId(examId);
+	}
+
+	@GetMapping("getAllByTeacher")
+	List<Exam> getAllByTeacher(int teacherId) {
+		return this.examService.getAllByTeacher(teacherId);
+	}
+
+	@GetMapping("getAllByStudent")
+	List<Exam> getAllByStudent(int studentId) {
+		return this.examService.getAllByStudent(studentId);
+	}
+
+	@GetMapping("getByLessonId")
+	List<Exam> getByLessonId(int lessonId) {
+		return this.examService.getByLessonId(lessonId);
+	}
+
+	@GetMapping("getByActive")
+	List<Exam> getByActive(int lessonId) {
+		return this.examService.getByActive(lessonId);
 	}
 }

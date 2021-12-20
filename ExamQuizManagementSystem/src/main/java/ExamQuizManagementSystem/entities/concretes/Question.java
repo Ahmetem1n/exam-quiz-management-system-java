@@ -29,19 +29,19 @@ public class Question {
 	private String questionText;
 
 	@Column(name = "option_a")
-	private String OptionA;
+	private String optionA;
 
 	@Column(name = "option_b")
-	private String OptionB;
+	private String optionB;
 
 	@Column(name = "option_c")
-	private String OptionC;
+	private String optionC;
 
 	@Column(name = "option_d")
-	private String OptionD;
+	private String optionD;
 
 	@Column(name = "option_e")
-	private String OptionE;
+	private String optionE;
 
 	@Column(name = "true_option")
 	private String trueOption;

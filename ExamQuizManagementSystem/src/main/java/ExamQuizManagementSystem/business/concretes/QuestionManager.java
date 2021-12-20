@@ -21,38 +21,42 @@ public class QuestionManager implements QuestionService {
 
 	@Override
 	public void add(Question question) {
-		if (questionDao.getByQuestionId(question.questionId) == null) {
+		if (questionDao.getByQuestionId(question.getQuestionId()) == null) {
 			this.questionDao.save(question);
 			System.out.println("Ekleme işlemi yapıldı.");
-		} else {
-			System.out.println("Bu id ile zaten kayıt var. Ekleme yapılmadı.");
+			return;
 		}
+		System.out.println("Bu id ile zaten kayıt var. Ekleme yapılmadı.");
+
 	}
 
 	@Override
 	public void delete(Question question) {
-		if (questionDao.getByQuestionId(question.questionId) != null) {
+		if (questionDao.getByQuestionId(question.getQuestionId()) != null) {
 			this.questionDao.delete(question);
 			System.out.println("Silme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
+			return;
 		}
+		System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
+
 	}
 
 	@Override
 	public void update(Question question) {
-		if (questionDao.getByQuestionId(question.questionId) != null) {
+		if (questionDao.getByQuestionId(question.getQuestionId()) != null) {
 			this.questionDao.save(question);
 			System.out.println("Güncelleme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı. Güncelleme yapılmadı.");
+			return;
 		}
+		System.out.println("Böyle bir kayıt bulunamadı. Güncelleme yapılmadı.");
+
 	}
 
 	@Override
 	public List<Question> getAll() {
 		if (this.questionDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
+			return null;
 		}
 		return this.questionDao.findAll();
 	}
@@ -61,8 +65,18 @@ public class QuestionManager implements QuestionService {
 	public Question getByQuestionId(int questionId) {
 		if (this.questionDao.getByQuestionId(questionId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
+			return null;
 		}
 		return this.questionDao.getByQuestionId(questionId);
+	}
+
+	@Override
+	public List<Question> getByExamId(int examId) {
+		if (this.questionDao.getByExamId(examId).size() == 0) {
+			System.out.println("Listede hiç kayıt yok.");
+			return null;
+		}
+		return this.questionDao.getByExamId(examId);
 	}
 
 }

@@ -41,7 +41,7 @@ public class QuestionStudentManager implements QuestionStudentService {
 				return;
 			}
 		}
-		
+
 		this.questionStudentDao.save(questionStudent);
 
 	}
@@ -51,9 +51,9 @@ public class QuestionStudentManager implements QuestionStudentService {
 		if (questionStudentDao.getByDetailId(questionStudent.getDetailId()) != null) {
 			this.questionStudentDao.delete(questionStudent);
 			System.out.println("Silme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
+			return;
 		}
+		System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
 
 	}
 
@@ -61,26 +61,22 @@ public class QuestionStudentManager implements QuestionStudentService {
 	public void update(QuestionStudent questionStudent) {
 
 		if (questionStudentDao.getByDetailId(questionStudent.getDetailId()) != null) {
-			System.out.println(questionStudent.getDetailId());
-			System.out.println(questionStudent.getQuestion().getQuestionId());
-			System.out.println(questionStudent.getStudent().getStudentId());
-			System.out.println(questionStudent.getMarkedOption());
 			this.questionStudentDao.save(questionStudent);
 			System.out.println("Güncelleme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı veya yanlış bilgiler var. Güncelleme yapılmadı.");
+			return;
 		}
+		System.out.println("Böyle bir kayıt bulunamadı veya yanlış bilgiler var. Güncelleme yapılmadı.");
+
 	}
 
 	@Override
 	public List<QuestionStudent> getAll() {
-		List<QuestionStudent> questionStudentDataList = questionStudentDao.findAll();
-		if (questionStudentDataList.size() == 0) {
+		if (this.questionStudentDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
 			return null;
 		}
 
-		return questionStudentDataList;
+		return this.questionStudentDao.findAll();
 	}
 
 	@Override
@@ -90,7 +86,7 @@ public class QuestionStudentManager implements QuestionStudentService {
 			return null;
 		}
 
-		return questionStudentDao.getByDetailId(detailId);
+		return this.questionStudentDao.getByDetailId(detailId);
 	}
 
 }

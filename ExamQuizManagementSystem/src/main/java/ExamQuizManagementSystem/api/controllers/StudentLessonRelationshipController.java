@@ -53,6 +53,11 @@ public class StudentLessonRelationshipController {
 	public List<StudentLessonRelationship> getByStudentId(int studentId) {
 		return this.relationshipService.getByStudentId(studentId);
 	}
+	
+	@GetMapping("getByLessonId")
+	public List<StudentLessonRelationship> getByLessonId(int lessonId) {
+		return this.relationshipService.getByLessonId(lessonId);
+	}
 
 	@GetMapping("getByTeacher")
 	public List<StudentLessonRelationship> getByTeacher(int teacherId) {

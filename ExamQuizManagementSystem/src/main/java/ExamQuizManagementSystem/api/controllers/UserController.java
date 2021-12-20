@@ -50,7 +50,7 @@ public class UserController {
 	}
 
 	@GetMapping("login")
-	public User login(String nationalityId, String password) {
-		return this.userService.login(nationalityId, password);
+	public User login(String nationalityId, String userPassword) {
+		return this.userService.login(nationalityId, userPassword);
 	}
 }

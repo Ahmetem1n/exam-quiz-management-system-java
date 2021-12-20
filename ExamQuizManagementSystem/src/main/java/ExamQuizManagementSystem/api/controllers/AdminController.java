@@ -33,11 +33,11 @@ public class AdminController {
 	public Admin getByAdminId(int adminId) {
 		return this.adminService.getByAdminId(adminId);
 	}
+
 	@GetMapping("getByUserId")
 	public Admin getByUserId(int userId) {
 		return this.adminService.getByUserId(userId);
 	}
-	
 
 	@PostMapping("add")
 	public void add(Admin admin) {

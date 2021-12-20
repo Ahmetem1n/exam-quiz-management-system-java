@@ -21,38 +21,40 @@ public class LessonManager implements LessonService {
 
 	@Override
 	public void add(Lesson lesson) {
-		if (lessonDao.getByLessonId(lesson.lessonId) == null) {
+		if (lessonDao.getByLessonId(lesson.getLessonId()) == null) {
 			this.lessonDao.save(lesson);
 			System.out.println("Ekleme işlemi yapıldı.");
-		} else {
-			System.out.println("Bu id ile zaten kayıt var. Ekleme yapılmadı.");
+			return;
 		}
+		System.out.println("Bu id ile zaten kayıt var. Ekleme yapılmadı.");
+
 	}
 
 	@Override
 	public void delete(Lesson lesson) {
-		if (lessonDao.getByLessonId(lesson.lessonId) != null) {
+		if (lessonDao.getByLessonId(lesson.getLessonId()) != null) {
 			this.lessonDao.delete(lesson);
 			System.out.println("Silme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
 		}
+		System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
+
 	}
 
 	@Override
 	public void update(Lesson lesson) {
-		if (lessonDao.getByLessonId(lesson.lessonId) != null) {
+		if (lessonDao.getByLessonId(lesson.getLessonId()) != null) {
 			this.lessonDao.save(lesson);
 			System.out.println("Güncelleme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı. Güncelleme yapılmadı.");
 		}
+		System.out.println("Böyle bir kayıt bulunamadı. Güncelleme yapılmadı.");
+
 	}
 
 	@Override
 	public List<Lesson> getAll() {
 		if (this.lessonDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
+			return null;
 		}
 		return this.lessonDao.findAll();
 	}
@@ -61,8 +63,27 @@ public class LessonManager implements LessonService {
 	public Lesson getByLessonId(int lessonId) {
 		if (this.lessonDao.getByLessonId(lessonId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
+			return null;
 		}
 		return this.lessonDao.getByLessonId(lessonId);
+	}
+
+	@Override
+	public List<Lesson> getByTeacherId(int teacherId) {
+		if (this.lessonDao.getByTeacherId(teacherId).size() == 0) {
+			System.out.println("Listede hiç kayıt yok.");
+			return null;
+		}
+		return this.lessonDao.getByTeacherId(teacherId);
+	}
+
+	@Override
+	public List<Lesson> getByStudentId(int studentId) {
+		if (this.lessonDao.getByStudentId(studentId).size() == 0) {
+			System.out.println("Listede hiç kayıt yok.");
+			return null;
+		}
+		return this.lessonDao.getByStudentId(studentId);
 	}
 
 }

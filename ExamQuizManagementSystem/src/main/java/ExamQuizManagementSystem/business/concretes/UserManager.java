@@ -24,9 +24,10 @@ public class UserManager implements UserService {
 		if (userDao.getByUserId(user.getUserId()) == null) {
 			this.userDao.save(user);
 			System.out.println("Ekleme işlemi yapıldı.");
-		} else {
-			System.out.println("Bu id ile zaten kayıt var. Ekleme yapılmadı.");
+			return;
 		}
+		System.out.println("Bu id ile zaten kayıt var. Ekleme yapılmadı.");
+
 	}
 
 	@Override
@@ -34,9 +35,11 @@ public class UserManager implements UserService {
 		if (userDao.getByUserId(user.getUserId()) != null) {
 			this.userDao.delete(user);
 			System.out.println("Silme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
+			return;
+
 		}
+		System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
+
 	}
 
 	@Override
@@ -44,15 +47,17 @@ public class UserManager implements UserService {
 		if (userDao.getByUserId(user.getUserId()) != null) {
 			this.userDao.save(user);
 			System.out.println("Güncelleme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı. Güncelleme yapılmadı.");
+			return;
 		}
+		System.out.println("Böyle bir kayıt bulunamadı. Güncelleme yapılmadı.");
+
 	}
 
 	@Override
 	public List<User> getAll() {
 		if (this.userDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
+			return null;
 		}
 		return this.userDao.findAll();
 	}
@@ -61,16 +66,18 @@ public class UserManager implements UserService {
 	public User getByUserId(int userId) {
 		if (this.userDao.getByUserId(userId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
+			return null;
 		}
 		return this.userDao.getByUserId(userId);
 	}
 
 	@Override
-	public User login(String nationalityId, String password) {
-		if (this.userDao.loginUser(nationalityId, password) == null) {
+	public User login(String nationalityId, String userPassword) {
+		if (this.userDao.loginUser(nationalityId, userPassword) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
+			return null;
 		}
-		return this.userDao.loginUser(nationalityId, password);
+		return this.userDao.loginUser(nationalityId, userPassword);
 	}
 
 }

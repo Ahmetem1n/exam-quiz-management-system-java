@@ -14,4 +14,13 @@ public interface ExamService {
 	List<Exam> getAll();
 
 	Exam getByExamId(int examId);
+
+	List<Exam> getAllByTeacher(int teacherId);
+
+	List<Exam> getAllByStudent(int studentId);
+
+	List<Exam> getByLessonId(int lessonId);
+
+	List<Exam> getByActive(int lessonId);
+
 }

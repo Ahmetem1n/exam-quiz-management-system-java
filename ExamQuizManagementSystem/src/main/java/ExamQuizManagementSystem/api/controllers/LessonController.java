@@ -48,4 +48,15 @@ public class LessonController {
 	public Lesson getByLessonId(int lessonId) {
 		return this.lessonService.getByLessonId(lessonId);
 	}
+
+	@GetMapping("getByTeacherId")
+	List<Lesson> getByTeacherId(int teacherId) {
+		return this.lessonService.getByTeacherId(teacherId);
+	}
+
+	@GetMapping("getByStudentId")
+	List<Lesson> getByStudentId(int studentId) {
+		return this.lessonService.getByStudentId(studentId);
+	}
+
 }

@@ -14,4 +14,6 @@ public interface QuestionService {
 	List<Question> getAll();
 
 	Question getByQuestionId(int questionId);
+
+	List<Question> getByExamId(int examId);
 }

@@ -21,38 +21,42 @@ public class TeacherManager implements TeacherService {
 
 	@Override
 	public void add(Teacher teacher) {
-		if (teacherDao.getByTeacherId(teacher.teacherId) == null) {
+		if (teacherDao.getByTeacherId(teacher.getTeacherId()) == null) {
 			this.teacherDao.save(teacher);
 			System.out.println("Ekleme işlemi yapıldı.");
-		} else {
-			System.out.println("Bu id ile zaten kayıt var. Ekleme yapılmadı.");
+			return;
 		}
+		System.out.println("Bu id ile zaten kayıt var. Ekleme yapılmadı.");
+
 	}
 
 	@Override
 	public void delete(Teacher teacher) {
-		if (teacherDao.getByTeacherId(teacher.teacherId) != null) {
+		if (teacherDao.getByTeacherId(teacher.getTeacherId()) != null) {
 			this.teacherDao.delete(teacher);
 			System.out.println("Silme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
+			return;
 		}
+		System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
+
 	}
 
 	@Override
 	public void update(Teacher teacher) {
-		if (teacherDao.getByTeacherId(teacher.teacherId) != null) {
+		if (teacherDao.getByTeacherId(teacher.getTeacherId()) != null) {
 			this.teacherDao.save(teacher);
 			System.out.println("Güncelleme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı. Güncelleme yapılmadı.");
+			return;
 		}
+		System.out.println("Böyle bir kayıt bulunamadı. Güncelleme yapılmadı.");
+
 	}
 
 	@Override
 	public List<Teacher> getAll() {
 		if (this.teacherDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
+			return null;
 		}
 		return this.teacherDao.findAll();
 	}
@@ -61,8 +65,18 @@ public class TeacherManager implements TeacherService {
 	public Teacher getByTeacherId(int teacherId) {
 		if (this.teacherDao.getByTeacherId(teacherId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
+			return null;
 		}
 		return this.teacherDao.getByTeacherId(teacherId);
+	}
+
+	@Override
+	public Teacher getByUserId(int userId) {
+		if (this.teacherDao.getByUserId(userId) == null) {
+			System.out.println("Bu id ile kayıt bulunamadı.");
+			return null;
+		}
+		return this.teacherDao.getByUserId(userId);
 	}
 
 }

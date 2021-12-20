@@ -14,4 +14,6 @@ public interface StudentService {
 	List<Student> getAll();
 
 	Student getByStudentId(int studentId);
+
+	Student getByUserId(int userId);
 }

@@ -15,5 +15,5 @@ public interface UserService {
 
 	User getByUserId(int userId);
 
-	User login(String nationalityId, String password);
+	User login(String nationalityId, String userPassword);
 }

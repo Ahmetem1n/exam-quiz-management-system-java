@@ -21,38 +21,37 @@ public class FacultyManager implements FacultyService {
 
 	@Override
 	public void add(Faculty faculty) {
-		if (facultyDao.getByFacultyId(faculty.facultyId) == null) {
+		if (facultyDao.getByFacultyId(faculty.getFacultyId()) == null) {
 			this.facultyDao.save(faculty);
 			System.out.println("Ekleme işlemi yapıldı.");
-		} else {
-			System.out.println("Bu id ile zaten kayıt var. Ekleme yapılmadı.");
+			return;
 		}
+		System.out.println("Bu id ile zaten kayıt var. Ekleme yapılmadı.");
 	}
 
 	@Override
 	public void delete(Faculty faculty) {
-		if (facultyDao.getByFacultyId(faculty.facultyId) != null) {
+		if (facultyDao.getByFacultyId(faculty.getFacultyId()) != null) {
 			this.facultyDao.delete(faculty);
 			System.out.println("Silme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
 		}
+		System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
 	}
 
 	@Override
 	public void update(Faculty faculty) {
-		if (facultyDao.getByFacultyId(faculty.facultyId) != null) {
+		if (facultyDao.getByFacultyId(faculty.getFacultyId()) != null) {
 			this.facultyDao.save(faculty);
 			System.out.println("Güncelleme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı. Güncelleme yapılmadı.");
 		}
+		System.out.println("Böyle bir kayıt bulunamadı. Güncelleme yapılmadı.");
 	}
 
 	@Override
 	public List<Faculty> getAll() {
 		if (this.facultyDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
+			return null;
 		}
 		return this.facultyDao.findAll();
 	}
@@ -61,6 +60,7 @@ public class FacultyManager implements FacultyService {
 	public Faculty getByFacultyId(int facultyId) {
 		if (this.facultyDao.getByFacultyId(facultyId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
+			return null;
 		}
 		return this.facultyDao.getByFacultyId(facultyId);
 	}

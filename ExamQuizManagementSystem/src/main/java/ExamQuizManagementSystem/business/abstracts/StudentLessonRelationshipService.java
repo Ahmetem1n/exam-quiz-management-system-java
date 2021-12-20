@@ -19,6 +19,6 @@ public interface StudentLessonRelationshipService {
 	
 	List<StudentLessonRelationship> getByLessonId(int lessonId);
 	
-	List<StudentLessonRelationship> getByTeacher(int teacherId,int lessonId);
+	List<StudentLessonRelationship> getByTeacher(int teacherId);
 }
 

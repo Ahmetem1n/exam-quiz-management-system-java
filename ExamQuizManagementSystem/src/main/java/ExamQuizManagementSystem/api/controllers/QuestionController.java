@@ -48,4 +48,9 @@ public class QuestionController {
 	public Question getByQuestionId(int questionId) {
 		return this.questionService.getByQuestionId(questionId);
 	}
+
+	@GetMapping("getByExamId")
+	public List<Question> getByExamId(int examId) {
+		return this.questionService.getByExamId(examId);
+	}
 }

@@ -14,4 +14,8 @@ public interface LessonService {
 	List<Lesson> getAll();
 
 	Lesson getByLessonId(int lessonId);
+
+	List<Lesson> getByTeacherId(int teacherId);
+
+	List<Lesson> getByStudentId(int studentId);
 }

@@ -25,15 +25,14 @@ public class ExamResultManager implements ExamResultService {
 		if (examResultDao.getByResultId(examResult.getResultId()) == null) {
 			this.examResultDao.save(examResult);
 			System.out.println("Ekleme işlemi yapıldı.");
-		} else {
-			System.out.println("Bu id ile zaten kayıt var. Ekleme yapılmadı.");
+			return;
 		}
-
+		System.out.println("Bu id ile zaten kayıt var. Ekleme yapılmadı.");
 	}
 
 	@Override
 	public void create(ExamResult examResult) {
-
+		return;
 	}
 
 	@Override
@@ -41,9 +40,9 @@ public class ExamResultManager implements ExamResultService {
 		if (examResultDao.getByResultId(examResult.getResultId()) != null) {
 			this.examResultDao.delete(examResult);
 			System.out.println("Silme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
+			return;
 		}
+		System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
 
 	}
 
@@ -52,9 +51,8 @@ public class ExamResultManager implements ExamResultService {
 		if (examResultDao.getByResultId(examResult.getResultId()) != null) {
 			this.examResultDao.save(examResult);
 			System.out.println("Güncelleme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı. Güncelleme yapılmadı.");
 		}
+		System.out.println("Böyle bir kayıt bulunamadı. Güncelleme yapılmadı.");
 
 	}
 
@@ -76,16 +74,18 @@ public class ExamResultManager implements ExamResultService {
 
 	@Override
 	public List<ExamResult> getByStudentId(int studentId) {
-		if (this.examResultDao.get(resultId) == null) {
-			System.out.println("Bu id ile kayıt bulunamadı.");
+		if (this.examResultDao.getByStudentId(studentId).size() == 0) {
+			System.out.println("Listede hiç kayıt yok.");
 		}
-		return this.examResultDao.getByResultId(resultId);
+		return this.examResultDao.getByStudentId(studentId);
 	}
 
 	@Override
 	public ExamResult getByExamIdAndStudentId(int examId, int studentId) {
-		// TODO Auto-generated method stub
-		return null;
+		if (this.examResultDao.getByExamIdAndStudentId(examId, studentId) == null) {
+			System.out.println("Bu id ile kayıt bulunamadı.");
+		}
+		return this.examResultDao.getByExamIdAndStudentId(examId, studentId);
 	}
 
 }

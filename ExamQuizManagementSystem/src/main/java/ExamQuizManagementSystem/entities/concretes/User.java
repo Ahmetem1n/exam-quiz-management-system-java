@@ -45,7 +45,7 @@ public class User {
 	private String userPhoto;
 
 	@Column(name = "user_password")
-	private String password;
+	private String userPassword;
 
 	@ManyToOne
 	@JoinColumn(name = "role_id")

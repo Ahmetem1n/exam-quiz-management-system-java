@@ -8,7 +8,7 @@ import ExamQuizManagementSystem.entities.concretes.User;
 public interface UserDao extends JpaRepository<User, Integer> {
 	User getByUserId(int userId);
 
-	@Query("From User where user_nationality_id=:nationalityId and user_password=:password")
-	User loginUser(String nationalityId, String password);
+	@Query("From User where user_nationality_id=:nationalityId and user_password=:userPassword")
+	User loginUser(String nationalityId, String userPassword);
 
 }

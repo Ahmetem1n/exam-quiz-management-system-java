@@ -48,4 +48,10 @@ public class TeacherController {
 	public Teacher getByTeacherId(int teacherId) {
 		return this.teacherService.getByTeacherId(teacherId);
 	}
+
+	@GetMapping("getByUserId")
+	public Teacher getByUserId(int userId) {
+		return this.teacherService.getByUserId(userId);
+	}
+
 }

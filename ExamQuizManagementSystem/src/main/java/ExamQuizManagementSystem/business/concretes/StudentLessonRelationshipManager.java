@@ -1,15 +1,12 @@
 package ExamQuizManagementSystem.business.concretes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ExamQuizManagementSystem.business.abstracts.LessonService;
 import ExamQuizManagementSystem.business.abstracts.StudentLessonRelationshipService;
 import ExamQuizManagementSystem.dataAccess.abstracts.StudentLessonRelationshipDao;
-import ExamQuizManagementSystem.entities.concretes.Lesson;
 import ExamQuizManagementSystem.entities.concretes.StudentLessonRelationship;
 
 @Service
@@ -23,18 +20,14 @@ public class StudentLessonRelationshipManager implements StudentLessonRelationsh
 		this.relationshipDao = relationshipDao;
 	}
 
-	@Autowired
-	private LessonService lessonService;
-
 	@Override
 	public void add(StudentLessonRelationship relationship) {
 		if (relationshipDao.getByRelationshipId(relationship.getRelationshipId()) == null) {
-
 			this.relationshipDao.save(relationship);
 			System.out.println("Ekleme işlemi yapıldı.");
-		} else {
-			System.out.println("Bu id ile zaten kayıt var veya yanlış bilgiler var. Ekleme yapılmadı.");
+			return;
 		}
+		System.out.println("Bu id ile zaten kayıt var veya yanlış bilgiler var. Ekleme yapılmadı.");
 
 	}
 
@@ -43,9 +36,9 @@ public class StudentLessonRelationshipManager implements StudentLessonRelationsh
 		if (relationshipDao.getByRelationshipId(relationship.getRelationshipId()) != null) {
 			this.relationshipDao.delete(relationship);
 			System.out.println("Silme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
+			return;
 		}
+		System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
 
 	}
 
@@ -54,21 +47,20 @@ public class StudentLessonRelationshipManager implements StudentLessonRelationsh
 		if (relationshipDao.getByRelationshipId(relationship.getRelationshipId()) != null) {
 			this.relationshipDao.save(relationship);
 			System.out.println("Güncelleme işlemi yapıldı.");
-		} else {
-			System.out.println("Böyle bir kayıt bulunamadı veya yanlış bilgiler var. Güncelleme yapılmadı.");
+			return;
 		}
+		System.out.println("Böyle bir kayıt bulunamadı veya yanlış bilgiler var. Güncelleme yapılmadı.");
 
 	}
 
 	@Override
 	public List<StudentLessonRelationship> getAll() {
-		List<StudentLessonRelationship> relationshipDataList = relationshipDao.findAll();
-		if (relationshipDataList.size() == 0) {
+		if (this.relationshipDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
 			return null;
 		}
 
-		return relationshipDataList;
+		return this.relationshipDao.findAll();
 	}
 
 	@Override
@@ -100,21 +92,11 @@ public class StudentLessonRelationshipManager implements StudentLessonRelationsh
 
 	@Override
 	public List<StudentLessonRelationship> getByTeacher(int teacherId) {
-		List<Lesson> lessonDataList = lessonService.getByTeacherId(teacherId);
-		List<StudentLessonRelationship> relationshipDataList = relationshipDao.findAll();
-		if (relationshipDataList.size() == 0 || lessonDataList.size() == 0) {
+		if (this.relationshipDao.getByTeacher(teacherId) == null) {
+			System.out.println("Kayıt bulunamadı.");
 			return null;
 		}
-		List<StudentLessonRelationship> dataList = new ArrayList<StudentLessonRelationship>();
-		for (int i = 0; i < lessonDataList.size(); i++) {
-			for (int j = 0; j < relationshipDataList.size(); j++) {
-				if (lessonDataList.get(i).getLessonId() == relationshipDataList.get(i).getLesson().getLessonId()) {
-					dataList.add(relationshipDataList.get(i));
-				}
-			}
-		}
-
-		return dataList;
+		return this.relationshipDao.getByTeacher(teacherId);
 	}
 
 }
