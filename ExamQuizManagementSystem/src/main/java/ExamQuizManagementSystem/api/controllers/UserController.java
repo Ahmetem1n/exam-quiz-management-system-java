@@ -48,4 +48,9 @@ public class UserController {
 	public User getByUserId(int userId) {
 		return this.userService.getByUserId(userId);
 	}
+
+	@GetMapping("login")
+	public User login(String nationalityId, String password) {
+		return this.userService.login(nationalityId, password);
+	}
 }

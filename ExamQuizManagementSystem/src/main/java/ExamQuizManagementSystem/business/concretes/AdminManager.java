@@ -21,7 +21,7 @@ public class AdminManager implements AdminService {
 
 	@Override
 	public void add(Admin admin) {
-		if (adminDao.getByAdminId(admin.adminId) == null) {
+		if (adminDao.getByAdminId(admin.getAdminId()) == null) {
 			this.adminDao.save(admin);
 			System.out.println("Ekleme işlemi yapıldı.");
 		} else {
@@ -31,7 +31,7 @@ public class AdminManager implements AdminService {
 
 	@Override
 	public void delete(Admin admin) {
-		if (adminDao.getByAdminId(admin.adminId) != null) {
+		if (adminDao.getByAdminId(admin.getAdminId()) != null) {
 			this.adminDao.delete(admin);
 			System.out.println("Silme işlemi yapıldı.");
 		} else {
@@ -41,7 +41,7 @@ public class AdminManager implements AdminService {
 
 	@Override
 	public void update(Admin admin) {
-		if (adminDao.getByAdminId(admin.adminId) != null) {
+		if (adminDao.getByAdminId(admin.getAdminId()) != null) {
 			this.adminDao.save(admin);
 			System.out.println("Güncelleme işlemi yapıldı.");
 		} else {
@@ -63,6 +63,15 @@ public class AdminManager implements AdminService {
 			System.out.println("Bu id ile kayıt bulunamadı.");
 		}
 		return this.adminDao.getByAdminId(adminId);
+	}
+
+	@Override
+	public Admin getByUserId(int userId) {
+		if (this.adminDao.getByUserId(userId) == null) {
+			System.out.println("Bu id ile kayıt bulunamadı.");
+			return null;
+		}
+		return this.adminDao.getByUserId(userId);
 	}
 
 }

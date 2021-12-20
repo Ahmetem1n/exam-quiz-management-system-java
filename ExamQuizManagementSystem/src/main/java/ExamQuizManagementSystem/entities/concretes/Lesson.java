@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -21,20 +23,22 @@ public class Lesson {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "lesson_id")
-	public int lessonId;
-
-	@Column(name = "teacher_id")
-	public int teacherId;
-
-	@Column(name = "department_id")
-	public int departmentId;
+	private int lessonId;
 
 	@Column(name = "lesson_name")
-	public String lessonName;
+	private String lessonName;
 
 	@Column(name = "lesson_teams_code")
-	public String lessonTeamsCode;
+	private String lessonTeamsCode;
 
 	@Column(name = "lesson_material_link")
-	public String lessonMaterialLink;
+	private String lessonMaterialLink;
+
+	@ManyToOne
+	@JoinColumn(name = "department_id")
+	private Department department;
+
+	@ManyToOne
+	@JoinColumn(name = "teacher_id")
+	private Teacher teacher;
 }

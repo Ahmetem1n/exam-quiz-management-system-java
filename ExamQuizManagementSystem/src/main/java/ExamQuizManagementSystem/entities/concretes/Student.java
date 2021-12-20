@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -21,17 +24,20 @@ public class Student {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "student_id")
-	public int studentId;
-
-	@Column(name = "user_id")
-	public int userId;
+	private int studentId;
 
 	@Column(name = "student_number")
-	public String studentNumber;
-
-	@Column(name = "student_nationality_id")
-	public String studentNationalityId;
+	private String studentNumber;
 
 	@Column(name = "student_grade")
-	public int studentGrade;
+	private int studentGrade;
+
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	@ManyToOne
+	@JoinColumn(name = "department_id")
+	private Department department;
+
 }

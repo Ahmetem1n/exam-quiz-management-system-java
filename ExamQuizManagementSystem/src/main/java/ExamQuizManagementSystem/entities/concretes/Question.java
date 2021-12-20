@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -21,21 +23,31 @@ public class Question {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "question_id")
-	public int questionId;
-
-	@Column(name = "exam_id")
-	public int examId;
+	private int questionId;
 
 	@Column(name = "question_text")
-	public String questionText;
+	private String questionText;
 
-	@Column(name = "question_options_text")
-	public String questionOptionsText;
+	@Column(name = "option_a")
+	private String OptionA;
+
+	@Column(name = "option_b")
+	private String OptionB;
+
+	@Column(name = "option_c")
+	private String OptionC;
+
+	@Column(name = "option_d")
+	private String OptionD;
+
+	@Column(name = "option_e")
+	private String OptionE;
 
 	@Column(name = "true_option")
-	public char trueOption;
+	private String trueOption;
 
-	@Column(name = "marked_option")
-	public char markedOption;
+	@ManyToOne
+	@JoinColumn(name = "exam_id")
+	private Exam exam;
 
 }

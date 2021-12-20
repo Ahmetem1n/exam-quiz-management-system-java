@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -25,7 +25,7 @@ public class Admin {
 	@Column(name = "admin_id")
 	private int adminId;
 
-	@OneToMany
-	@JoinColumn(name="user_id")
+	@OneToOne
+	@JoinColumn(name = "user_id")
 	private User user;
 }

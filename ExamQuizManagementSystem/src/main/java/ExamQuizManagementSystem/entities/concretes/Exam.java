@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -21,9 +23,13 @@ public class Exam {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "exam_id")
-	public int examId;
+	private int examId;
 
-	@Column(name = "lesson_id")
-	public int lessonId;
+	@Column(name = "active")
+	public boolean active;
+
+	@ManyToOne
+	@JoinColumn(name = "lesson_id")
+	private Lesson lesson;
 
 }

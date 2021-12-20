@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -15,15 +17,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "user_roles")
-public class UserRole {
-
+@Table(name = "questions_students")
+public class QuestionStudent {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "role_id")
-	private int roleId;
+	@Column(name = "detail_id")
+	private int detailId;
 
-	@Column(name = "role_name")
-	private String roleName;
+	@Column(name = "marked_option")
+	private String markedOption;
 
+	@ManyToOne
+	@JoinColumn(name = "student_id")
+	private Student student;
+
+	@ManyToOne
+	@JoinColumn(name = "question_id")
+	private Question question;
 }

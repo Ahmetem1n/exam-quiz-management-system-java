@@ -21,9 +21,9 @@ public class Faculty {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "faculty_id")
-	public int facultyId;
+	private int facultyId;
 
 	@Column(name = "faculty_name")
-	public String facultyName;
+	private String facultyName;
 
 }

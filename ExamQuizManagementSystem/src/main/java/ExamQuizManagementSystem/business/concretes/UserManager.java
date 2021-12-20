@@ -21,7 +21,7 @@ public class UserManager implements UserService {
 
 	@Override
 	public void add(User user) {
-		if (userDao.getByUserId(user.userId) == null) {
+		if (userDao.getByUserId(user.getUserId()) == null) {
 			this.userDao.save(user);
 			System.out.println("Ekleme işlemi yapıldı.");
 		} else {
@@ -31,7 +31,7 @@ public class UserManager implements UserService {
 
 	@Override
 	public void delete(User user) {
-		if (userDao.getByUserId(user.userId) != null) {
+		if (userDao.getByUserId(user.getUserId()) != null) {
 			this.userDao.delete(user);
 			System.out.println("Silme işlemi yapıldı.");
 		} else {
@@ -41,7 +41,7 @@ public class UserManager implements UserService {
 
 	@Override
 	public void update(User user) {
-		if (userDao.getByUserId(user.userId) != null) {
+		if (userDao.getByUserId(user.getUserId()) != null) {
 			this.userDao.save(user);
 			System.out.println("Güncelleme işlemi yapıldı.");
 		} else {
@@ -63,6 +63,14 @@ public class UserManager implements UserService {
 			System.out.println("Bu id ile kayıt bulunamadı.");
 		}
 		return this.userDao.getByUserId(userId);
+	}
+
+	@Override
+	public User login(String nationalityId, String password) {
+		if (this.userDao.loginUser(nationalityId, password) == null) {
+			System.out.println("Bu id ile kayıt bulunamadı.");
+		}
+		return this.userDao.loginUser(nationalityId, password);
 	}
 
 }
