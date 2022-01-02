@@ -34,6 +34,7 @@ public class FacultyManager implements FacultyService {
 		if (facultyDao.getByFacultyId(faculty.getFacultyId()) != null) {
 			this.facultyDao.delete(faculty);
 			System.out.println("Silme işlemi yapıldı.");
+			return;
 		}
 		System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
 	}
@@ -43,6 +44,7 @@ public class FacultyManager implements FacultyService {
 		if (facultyDao.getByFacultyId(faculty.getFacultyId()) != null) {
 			this.facultyDao.save(faculty);
 			System.out.println("Güncelleme işlemi yapıldı.");
+			return;
 		}
 		System.out.println("Böyle bir kayıt bulunamadı. Güncelleme yapılmadı.");
 	}
@@ -51,7 +53,6 @@ public class FacultyManager implements FacultyService {
 	public List<Faculty> getAll() {
 		if (this.facultyDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 		return this.facultyDao.findAll();
 	}
@@ -60,7 +61,6 @@ public class FacultyManager implements FacultyService {
 	public Faculty getByFacultyId(int facultyId) {
 		if (this.facultyDao.getByFacultyId(facultyId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
-			return null;
 		}
 		return this.facultyDao.getByFacultyId(facultyId);
 	}

@@ -53,7 +53,6 @@ public class AdminManager implements AdminService {
 	public List<Admin> getAll() {
 		if (this.adminDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 		return this.adminDao.findAll();
 	}
@@ -70,7 +69,6 @@ public class AdminManager implements AdminService {
 	public Admin getByUserId(int userId) {
 		if (this.adminDao.getByUserId(userId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
-			return null;
 		}
 		return this.adminDao.getByUserId(userId);
 	}

@@ -55,7 +55,6 @@ public class StudentManager implements StudentService {
 	public List<Student> getAll() {
 		if (this.studentDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 		return this.studentDao.findAll();
 	}
@@ -64,7 +63,6 @@ public class StudentManager implements StudentService {
 	public Student getByStudentId(int studentId) {
 		if (this.studentDao.getByStudentId(studentId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
-			return null;
 		}
 		return this.studentDao.getByStudentId(studentId);
 	}
@@ -73,7 +71,6 @@ public class StudentManager implements StudentService {
 	public Student getByUserId(int userId) {
 		if (this.studentDao.getByUserId(userId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
-			return null;
 		}
 		return this.studentDao.getByUserId(userId);
 	}

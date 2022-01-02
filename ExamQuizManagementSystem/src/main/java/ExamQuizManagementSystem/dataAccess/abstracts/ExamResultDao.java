@@ -15,4 +15,7 @@ public interface ExamResultDao extends JpaRepository<ExamResult, Integer> {
 
 	@Query("From ExamResult where exam_id=:examId and student_id=:studentId")
 	ExamResult getByExamIdAndStudentId(int examId, int studentId);
+
+	@Query(value = "select count(*) from questions q inner join questions_students qs on qs.question_id=q.question_id where student_id=:studentId and exam_id=:examId and true_option=marked_option", nativeQuery = true)
+	int create(int examId, int studentId);
 }

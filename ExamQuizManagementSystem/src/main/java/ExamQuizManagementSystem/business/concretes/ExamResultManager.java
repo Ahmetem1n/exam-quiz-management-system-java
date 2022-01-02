@@ -7,12 +7,16 @@ import org.springframework.stereotype.Service;
 
 import ExamQuizManagementSystem.business.abstracts.ExamResultService;
 import ExamQuizManagementSystem.dataAccess.abstracts.ExamResultDao;
+import ExamQuizManagementSystem.dataAccess.abstracts.QuestionDao;
 import ExamQuizManagementSystem.entities.concretes.ExamResult;
 
 @Service
 public class ExamResultManager implements ExamResultService {
 
 	private ExamResultDao examResultDao;
+
+	@Autowired
+	private QuestionDao questionDao;
 
 	@Autowired
 	public ExamResultManager(ExamResultDao examResultDao) {
@@ -32,6 +36,20 @@ public class ExamResultManager implements ExamResultService {
 
 	@Override
 	public void create(ExamResult examResult) {
+		List<ExamResult> examResultDataList = examResultDao.findAll();
+
+		for (int i = 0; i < examResultDataList.size(); i++) {
+			if (examResultDataList.get(i).getExam().getExamId() == examResult.getExam().getExamId()
+					&& examResultDataList.get(i).getStudent().getStudentId() == examResult.getStudent()
+							.getStudentId()) {
+				examResult.setResultId(examResultDataList.get(i).getResultId());
+			}
+		}
+
+		int result = 100 / questionDao.getByExamId(examResult.getExam().getExamId()).size() * this.examResultDao
+				.create(examResult.getExam().getExamId(), examResult.getStudent().getStudentId());
+		examResult.setResult(result);
+		this.examResultDao.save(examResult);
 		return;
 	}
 

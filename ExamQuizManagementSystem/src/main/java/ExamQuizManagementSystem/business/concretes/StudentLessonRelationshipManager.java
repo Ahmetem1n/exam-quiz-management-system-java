@@ -57,7 +57,6 @@ public class StudentLessonRelationshipManager implements StudentLessonRelationsh
 	public List<StudentLessonRelationship> getAll() {
 		if (this.relationshipDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 
 		return this.relationshipDao.findAll();
@@ -67,7 +66,6 @@ public class StudentLessonRelationshipManager implements StudentLessonRelationsh
 	public StudentLessonRelationship getByRelationshipId(int relationshipId) {
 		if (this.relationshipDao.getByRelationshipId(relationshipId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
-			return null;
 		}
 
 		return relationshipDao.getByRelationshipId(relationshipId);
@@ -77,7 +75,6 @@ public class StudentLessonRelationshipManager implements StudentLessonRelationsh
 	public List<StudentLessonRelationship> getByStudentId(int studentId) {
 		if (this.relationshipDao.getByStudentId(studentId) == null) {
 			System.out.println("Kayıt bulunamadı.");
-			return null;
 		}
 		return this.relationshipDao.getByStudentId(studentId);
 	}
@@ -85,7 +82,6 @@ public class StudentLessonRelationshipManager implements StudentLessonRelationsh
 	public List<StudentLessonRelationship> getByLessonId(int lessonId) {
 		if (this.relationshipDao.getByLessonId(lessonId) == null) {
 			System.out.println("Kayıt bulunamadı.");
-			return null;
 		}
 		return this.relationshipDao.getByLessonId(lessonId);
 	}
@@ -94,7 +90,6 @@ public class StudentLessonRelationshipManager implements StudentLessonRelationsh
 	public List<StudentLessonRelationship> getByTeacher(int teacherId) {
 		if (this.relationshipDao.getByTeacher(teacherId) == null) {
 			System.out.println("Kayıt bulunamadı.");
-			return null;
 		}
 		return this.relationshipDao.getByTeacher(teacherId);
 	}

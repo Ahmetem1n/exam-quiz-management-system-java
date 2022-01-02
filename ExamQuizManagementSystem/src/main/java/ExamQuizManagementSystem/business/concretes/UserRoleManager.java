@@ -56,7 +56,6 @@ public class UserRoleManager implements UserRoleService {
 	public List<UserRole> getAll() {
 		if (this.userRoleDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 		return this.userRoleDao.findAll();
 	}
@@ -65,7 +64,6 @@ public class UserRoleManager implements UserRoleService {
 	public UserRole getByRoleId(int roleId) {
 		if (this.userRoleDao.getByRoleId(roleId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
-			return null;
 		}
 		return this.userRoleDao.getByRoleId(roleId);
 	}

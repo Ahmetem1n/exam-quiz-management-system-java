@@ -35,6 +35,7 @@ public class LessonManager implements LessonService {
 		if (lessonDao.getByLessonId(lesson.getLessonId()) != null) {
 			this.lessonDao.delete(lesson);
 			System.out.println("Silme işlemi yapıldı.");
+			return;
 		}
 		System.out.println("Böyle bir kayıt bulunamadı. Silme yapılmadı.");
 
@@ -45,6 +46,7 @@ public class LessonManager implements LessonService {
 		if (lessonDao.getByLessonId(lesson.getLessonId()) != null) {
 			this.lessonDao.save(lesson);
 			System.out.println("Güncelleme işlemi yapıldı.");
+			return;
 		}
 		System.out.println("Böyle bir kayıt bulunamadı. Güncelleme yapılmadı.");
 
@@ -54,7 +56,6 @@ public class LessonManager implements LessonService {
 	public List<Lesson> getAll() {
 		if (this.lessonDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 		return this.lessonDao.findAll();
 	}
@@ -63,7 +64,6 @@ public class LessonManager implements LessonService {
 	public Lesson getByLessonId(int lessonId) {
 		if (this.lessonDao.getByLessonId(lessonId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
-			return null;
 		}
 		return this.lessonDao.getByLessonId(lessonId);
 	}
@@ -72,7 +72,6 @@ public class LessonManager implements LessonService {
 	public List<Lesson> getByTeacherId(int teacherId) {
 		if (this.lessonDao.getByTeacherId(teacherId).size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 		return this.lessonDao.getByTeacherId(teacherId);
 	}
@@ -81,7 +80,6 @@ public class LessonManager implements LessonService {
 	public List<Lesson> getByStudentId(int studentId) {
 		if (this.lessonDao.getByStudentId(studentId).size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 		return this.lessonDao.getByStudentId(studentId);
 	}

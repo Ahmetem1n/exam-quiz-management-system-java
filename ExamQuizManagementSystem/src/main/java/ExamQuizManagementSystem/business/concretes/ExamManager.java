@@ -58,7 +58,6 @@ public class ExamManager implements ExamService {
 	public List<Exam> getAll() {
 		if (this.examDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 		return this.examDao.findAll();
 	}
@@ -67,7 +66,6 @@ public class ExamManager implements ExamService {
 	public Exam getByExamId(int examId) {
 		if (this.examDao.getByExamId(examId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
-			return null;
 		}
 		return this.examDao.getByExamId(examId);
 	}
@@ -77,7 +75,6 @@ public class ExamManager implements ExamService {
 
 		if (this.examDao.getAllByTeacher(teacherId).size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 		return this.examDao.getAllByTeacher(teacherId);
 	}
@@ -86,7 +83,6 @@ public class ExamManager implements ExamService {
 	public List<Exam> getAllByStudent(int studentId) {
 		if (this.examDao.getAllByStudent(studentId).size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 		return this.examDao.getAllByStudent(studentId);
 	}
@@ -95,7 +91,6 @@ public class ExamManager implements ExamService {
 	public List<Exam> getByLessonId(int lessonId) {
 		if (this.examDao.getByLessonId(lessonId).size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 		return this.examDao.getByLessonId(lessonId);
 
@@ -105,7 +100,6 @@ public class ExamManager implements ExamService {
 	public List<Exam> getByActive(int lessonId) {
 		if (this.examDao.getByActive(lessonId).size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 		return this.examDao.getByActive(lessonId);
 	}

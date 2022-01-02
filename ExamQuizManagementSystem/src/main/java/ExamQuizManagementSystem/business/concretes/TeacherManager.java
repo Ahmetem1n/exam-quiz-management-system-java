@@ -56,7 +56,6 @@ public class TeacherManager implements TeacherService {
 	public List<Teacher> getAll() {
 		if (this.teacherDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 		return this.teacherDao.findAll();
 	}
@@ -65,7 +64,6 @@ public class TeacherManager implements TeacherService {
 	public Teacher getByTeacherId(int teacherId) {
 		if (this.teacherDao.getByTeacherId(teacherId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
-			return null;
 		}
 		return this.teacherDao.getByTeacherId(teacherId);
 	}
@@ -74,7 +72,6 @@ public class TeacherManager implements TeacherService {
 	public Teacher getByUserId(int userId) {
 		if (this.teacherDao.getByUserId(userId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
-			return null;
 		}
 		return this.teacherDao.getByUserId(userId);
 	}

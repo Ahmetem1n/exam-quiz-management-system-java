@@ -57,7 +57,6 @@ public class DepartmentManager implements DepartmentService {
 	public List<Department> getAll() {
 		if (this.departmentDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 		return this.departmentDao.findAll();
 	}
@@ -66,7 +65,6 @@ public class DepartmentManager implements DepartmentService {
 	public Department getByDepartmentId(int departmentId) {
 		if (this.departmentDao.getByDepartmentId(departmentId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
-			return null;
 		}
 		return this.departmentDao.getByDepartmentId(departmentId);
 	}

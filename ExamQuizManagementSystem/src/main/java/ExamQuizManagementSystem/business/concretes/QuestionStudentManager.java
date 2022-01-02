@@ -22,12 +22,6 @@ public class QuestionStudentManager implements QuestionStudentService {
 
 	@Override
 	public void add(QuestionStudent questionStudent) {
-//		if (questionStudentDao.getByDetailId(questionStudent.getDetailId()) == null) {
-//			this.questionStudentDao.save(questionStudent);
-//			System.out.println("Ekleme işlemi yapıldı.");
-//		} else {
-//			System.out.println("Bu id ile zaten kayıt var veya yanlış bilgiler var. Ekleme yapılmadı.");
-//		}
 		List<QuestionStudent> questionStudentDataList = questionStudentDao.findAll();
 		for (int i = 0; i < questionStudentDataList.size(); i++) {
 			if (questionStudent.getQuestion().getQuestionId() == questionStudentDataList.get(i).getQuestion()
@@ -73,7 +67,6 @@ public class QuestionStudentManager implements QuestionStudentService {
 	public List<QuestionStudent> getAll() {
 		if (this.questionStudentDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 
 		return this.questionStudentDao.findAll();
@@ -83,7 +76,6 @@ public class QuestionStudentManager implements QuestionStudentService {
 	public QuestionStudent getByDetailId(int detailId) {
 		if (this.questionStudentDao.getByDetailId(detailId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
-			return null;
 		}
 
 		return this.questionStudentDao.getByDetailId(detailId);

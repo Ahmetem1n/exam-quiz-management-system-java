@@ -57,7 +57,6 @@ public class UserManager implements UserService {
 	public List<User> getAll() {
 		if (this.userDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 		return this.userDao.findAll();
 	}
@@ -66,7 +65,6 @@ public class UserManager implements UserService {
 	public User getByUserId(int userId) {
 		if (this.userDao.getByUserId(userId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
-			return null;
 		}
 		return this.userDao.getByUserId(userId);
 	}
@@ -75,7 +73,6 @@ public class UserManager implements UserService {
 	public User login(String nationalityId, String userPassword) {
 		if (this.userDao.loginUser(nationalityId, userPassword) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
-			return null;
 		}
 		return this.userDao.loginUser(nationalityId, userPassword);
 	}

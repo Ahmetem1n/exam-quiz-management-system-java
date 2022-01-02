@@ -44,7 +44,7 @@ public class QuestionStudentController {
 		return this.questionStudentService.getAll();
 	}
 
-	@GetMapping("getByQuestionId")
+	@GetMapping("getByDetailId")
 	public QuestionStudent getByDetailId(int detailId) {
 		return this.questionStudentService.getByDetailId(detailId);
 	}

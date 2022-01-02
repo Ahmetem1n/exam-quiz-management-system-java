@@ -56,7 +56,6 @@ public class QuestionManager implements QuestionService {
 	public List<Question> getAll() {
 		if (this.questionDao.findAll().size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 		return this.questionDao.findAll();
 	}
@@ -65,7 +64,6 @@ public class QuestionManager implements QuestionService {
 	public Question getByQuestionId(int questionId) {
 		if (this.questionDao.getByQuestionId(questionId) == null) {
 			System.out.println("Bu id ile kayıt bulunamadı.");
-			return null;
 		}
 		return this.questionDao.getByQuestionId(questionId);
 	}
@@ -74,7 +72,6 @@ public class QuestionManager implements QuestionService {
 	public List<Question> getByExamId(int examId) {
 		if (this.questionDao.getByExamId(examId).size() == 0) {
 			System.out.println("Listede hiç kayıt yok.");
-			return null;
 		}
 		return this.questionDao.getByExamId(examId);
 	}
