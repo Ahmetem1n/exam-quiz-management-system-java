@@ -13,7 +13,7 @@ public interface ExamDao extends JpaRepository<Exam, Integer> {
 	@Query("From Exam where lesson_id=:lessonId")
 	List<Exam> getByLessonId(int lessonId);
 
-	@Query("From Exam where lesson_id=:lessonId and active=true")
+	@Query(value = "select e.exam_id,e.lesson_id,e.active from exams e inner join questions q on q.exam_id=e.exam_id where lesson_id=:lessonId and active=true group by e.exam_id,e.lesson_id,e.active", nativeQuery = true)
 	List<Exam> getByActive(int lessonId);
 
 	@Query(value = "select e.exam_id,e.lesson_id,e.active from exams e inner join student_lesson_relationship s on s.lesson_id=e.lesson_id inner join questions q on q.exam_id=e.exam_id where student_id=:studentId and e.active=true group by e.exam_id,e.lesson_id,e.active", nativeQuery = true)
